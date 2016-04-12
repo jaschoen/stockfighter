@@ -1,6 +1,6 @@
 require 'httparty'
 require 'openssl'
-OpenSSL::SSL::VERIFY_PEER = OpenSSL::SSL::VERIFY_NONE
+# OpenSSL::SSL::VERIFY_PEER = OpenSSL::SSL::VERIFY_NONE
 
 class StockfighterAPI
 	attr_accessor :api_key, :base_url, :error, :response
@@ -11,23 +11,25 @@ class StockfighterAPI
 	end
 
 	def isApiUp
-		@response = HTTParty.get(self.base_url + "/heartbeat")
-		ok = response.parsed_response["ok"] rescue false
-		raise "Oh no the world is on fire!" unless ok
-		ok
+		# @response = HTTParty.get(self.base_url + "/heartbeat")
+		# ok = response.parsed_response["ok"] rescue false
+		# raise "Oh no the world is on fire!" unless ok
+		# ok
+		HTTParty.get(self.base_url + "/heartbeat")
 	end
 
 	def isVenueUp(test_venue)
-		begin
-			@response = HTTParty.get(self.base_url + "/venues/" + test_venue.to_s + "/heartbeat")
-			ok = response.parsed_response["ok"]
-			raise "Oh no the world is on fire!" if !ok.is_a?(TrueClass) 
-		rescue
-			#puts "Internal error message: " + response.parsed_response["error"]
-			@error = response.parsed_response["error"]
-			ok = false
-		end
-		ok
+		# begin
+			# @response = HTTParty.get(self.base_url + "/venues/" + test_venue.to_s + "/heartbeat")
+		# 	ok = response.parsed_response["ok"]
+		# 	raise "Oh no the world is on fire!" if !ok.is_a?(TrueClass) 
+		# rescue
+		# 	#puts "Internal error message: " + response.parsed_response["error"]
+		# 	@error = response.parsed_response["error"]
+		# 	ok = false
+		# end
+		# ok
+		HTTParty.get(self.base_url + "/venues/" + test_venue.to_s + "/heartbeat")
 	end
 
 	#def getStocks(test_venue)
