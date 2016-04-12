@@ -6,12 +6,10 @@ require_relative 'LevelInfo'
 require_relative 'level_one'
 require 'json'
 
-_interface = StockfighterAPI.new
+interface = StockfighterAPI.new
+levelinfo = LevelInfo.new(1, "TESTEX", "FOOBAR", "EXB123456")
 
-ap _interface.isApiUp
+ap interface.is_venue_up?("TESTEX")
 
-ap _interface.isVenueUp("TESTEX")
-ap _interface.error
-ap _interface.isVenueUp("test_fail")
-ap _interface.error
+ap interface.get_stocks("TESTEX")
 
