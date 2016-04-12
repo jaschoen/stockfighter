@@ -6,22 +6,12 @@ require_relative 'LevelInfo'
 require_relative 'level_one'
 require 'json'
 
-this_key = StockfighterAPI.new
+_interface = StockfighterAPI.new
 
-# puts "\nREADY TRADER ONE...\n\n"
+ap _interface.isApiUp
 
-# puts "IS API UP?? : " + this_key.isApiUp.to_s
-# puts "Reponse after isApiUp test: " + this_key.response.to_s
+ap _interface.isVenueUp("TESTEX")
+ap _interface.error
+ap _interface.isVenueUp("test_fail")
+ap _interface.error
 
-# puts "IS VENUE UP?? : " + this_key.isVenueUp("TESTEX").to_s
-# puts "Reponse after isApiUp test: " + this_key.response.to_s
-
-# puts "IS VENUE UP?? : " + this_key.isVenueUp("TEEX").to_s
-# puts "Reponse after isApiUp test: " + this_key.response.to_s
-# puts "TEST FAIL ERROR MESSAGE: " + this_key.error
-
-ap this_key.isApiUp
-# puts
-ap this_key.isVenueUp("TESTEX")
-ap this_key.isVenueUp("test_fail").parsed_response
-# ap JSON.parse(this_key.isVenueUp("test_fail").parsed_response)
