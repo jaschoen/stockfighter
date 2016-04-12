@@ -18,10 +18,15 @@ class StockfighterAPI
 	end
 
 	def isVenueUp(test_venue)
-		@response = HTTParty.get(self.base_url + "/venues/" + test_venue.to_s + "/heartbeat")
-		ok = response.parsed_response["ok"] rescue false
-		raise "Oh no the world is on fire!" unless ok
-		@error = response.parsed_response["error"] rescue false
+		begin
+			@response = HTTParty.get(self.base_url + "/venues/" + test_venue.to_s + "/heartbeat")
+			ok = response.parsed_response["ok"]
+			raise "Oh no the world is on fire!" if !ok.is_a?(TrueClass) 
+		rescue
+			#puts "Internal error message: " + response.parsed_response["error"]
+			@error = response.parsed_response["error"]
+			ok = false
+		end
 		ok
 	end
 

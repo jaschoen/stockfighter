@@ -15,3 +15,4 @@ puts "Reponse after isApiUp test: " + this_key.response.to_s
 
 puts "IS VENUE UP?? : " + this_key.isVenueUp("TEEX").to_s
 puts "Reponse after isApiUp test: " + this_key.response.to_s
+puts "TEST FAIL ERROR MESSAGE: " + this_key.error
